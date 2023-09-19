@@ -1,0 +1,17 @@
+<header>
+  <div class="right" *ngIf="isConnected; else notConnected">
+    <h2> {{userName}}
+      <a  routerLink="/profil">
+        <img src="./../../../assets/images/icons8-personne-homme-24.png" alt="profil">
+      </a>
+      <a (click)="logout()" routerLink="/acceuil">
+        <img src="./../../../assets/images/icons8-déconnexion-30.png" alt="Déconnexion">
+      </a>
+    </h2>
+  </div>
+  <ng-template #notConnected>
+<div>
+  <h2><a routerLink="/connection">Se connecter</a></h2>
+</div>
+  </ng-template>
+</header>

@@ -1,0 +1,14 @@
+<div class="login-box">
+  <form [formGroup]="loginForm">
+    <div class="user-box">
+      <input type="text" formControlName="username" required>
+      <label>Username</label>
+    </div>
+    <div class="user-box">
+      <input type="password" formControlName="password" required>
+      <label>Password</label>
+    </div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    <button (click)="onSubmit()">Se connecter<span></span></button>
+  </form>
+</div>

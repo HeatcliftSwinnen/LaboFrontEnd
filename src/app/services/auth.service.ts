@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, map, Observable, tap} from "rxjs";
 import {TokenDTO} from "../dtos & forms/tokenDTO";
 import {HttpClient} from "@angular/common/http";
-import {LoginForm} from "../dtos & forms/loginForm";
+import {LoginDTO} from "../dtos & forms/LoginDTO";
 import {passwordForm} from "../dtos & forms/passwordForm";
 import {UserRole} from "../enums/userRole";
 
@@ -19,7 +19,7 @@ export class AuthService {
     this.loggedInSubject = new BehaviorSubject<TokenDTO | undefined>(this.authData)
   }
 
-  login(loginForm: LoginForm) {
+  login(loginForm: LoginDTO) {
     return this.http.post<TokenDTO>(`${this.apiUrl}/auth/login`, loginForm).pipe(
       tap( data => {
         localStorage.setItem('user', JSON.stringify(data));
@@ -65,8 +65,7 @@ export class AuthService {
 
   isAdmin(): boolean {
     const role = this.authData?.user?.role;
-    const isAdmin = role === UserRole.Admin;
-    return isAdmin;
+    return role === UserRole.Admin;
   }
 
 
